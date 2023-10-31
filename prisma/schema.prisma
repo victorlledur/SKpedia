@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Assassino {
+  id                   String      @id @default(auto()) @map("_id") @db.ObjectId
+  name                 String
+  apelido              String
+  genero               String
+  nacionalidade        String
+  data_de_nascimento   String
+  categorias           Categoria[] @relation(fields: [categorias_ids], references: [id])
+  categorias_ids       String[]    @db.ObjectId
+  vitimas_confirmadas  Int
+  vitimas_atribuidas   Int
+  anos_de_atividade    String
+  paises_de_atividade  String
+  passado_e_infancia   String
+  assassinatos         String
+  julgamento           String
+  data_da_prisao       String
+  sentenca             String
+  local_da_prisao      String
+  executado            String
+  data_da_morte        String
+  imagens_do_assassino String
+  imagens_das_vitimas  String
+  midia_em_portugues   String
+}
+
+model Categoria {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  numero        Int         @unique
+  categoria     String
+  assassino_ids String[]    @db.ObjectId
+  assassino     Assassino[] @relation(fields: [assassino_ids], references: [id])
+}
