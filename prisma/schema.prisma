@@ -31,14 +31,14 @@ model Assassino {
   local_da_prisao      String
   executado            String
   data_da_morte        String
-  imagens_do_assassino String
-  imagens_das_vitimas  String
-  midia_em_portugues   String
+  imagens_do_assassino String[]
+  imagens_das_vitimas  String[]
+  midia_em_portugues   String[]
 }
 
 model Categoria {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  numero        Int         @unique
+  numero        String      
   categoria     String
   assassino_ids String[]    @db.ObjectId
   assassino     Assassino[] @relation(fields: [assassino_ids], references: [id])
