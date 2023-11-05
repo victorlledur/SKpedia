@@ -1,6 +1,6 @@
 FROM node:20.9.0-alpine
 ADD https://github.com/victorlledur/SKpedia ./
-ADD tsconfig*.json ./
+ADD tsconfig.json ./
 COPY ./ /app
 WORKDIR /app
 RUN npm install
