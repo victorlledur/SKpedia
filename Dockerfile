@@ -5,5 +5,5 @@ WORKDIR /app
 RUN npm install
 RUN npm install typescript -g
 RUN mkdir /app/dist
-RUN tsc
+RUN tsc --build
 CMD ["node", "./dist/index.js"]
