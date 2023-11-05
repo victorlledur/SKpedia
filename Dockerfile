@@ -2,7 +2,7 @@ FROM node:20.9.0-alpine
 ADD https://github.com/victorlledur/SKpedia ./
 COPY ./ /app
 WORKDIR /app
-COPY tsconfig.json ./
+COPY tsconfig*.json ./
 RUN npm install
 RUN npm install typescript -g
 RUN mkdir /app/dist
