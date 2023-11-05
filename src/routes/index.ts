@@ -7,8 +7,8 @@ const router = express.Router();
 
 const routes = Router();
 
-router.get('/google_verification.html', (req, res) => {    
-    const arquivoVerificacao = path.join(__dirname, './googleaa16c7ab4b42f18e.html');
+router.get('/googleaa16c7ab4b42f18e.html', (req, res) => {    
+    const arquivoVerificacao = path.join(__dirname, '../googleaa16c7ab4b42f18e.html');
     res.sendFile(arquivoVerificacao);
   });
 
