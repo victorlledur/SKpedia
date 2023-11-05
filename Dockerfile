@@ -3,5 +3,6 @@ ADD https://github.com/victorlledur/SKpedia ./
 COPY ./ /app
 WORKDIR /app
 RUN npm install
+RUN mkdir /app
 RUN npm run build
 CMD ["node", "index.js"]
