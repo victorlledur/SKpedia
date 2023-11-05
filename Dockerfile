@@ -1,4 +1,4 @@
-FROM node:16.16.0-alpine
+FROM node:20.9.0-alpine
 ADD https://github.com/victorlledur/SKpedia ./
 COPY ./ /app
 WORKDIR /app
