@@ -5,4 +5,4 @@ WORKDIR /app
 RUN npm install
 RUN mkdir /app/dist
 RUN npm run build
-CMD ["node", "./dist/index.js"]
+CMD ["node", "./path/to/dist/index.js"]
