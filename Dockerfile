@@ -4,5 +4,5 @@ COPY ./ /app
 WORKDIR /app
 RUN npm install
 RUN mkdir /app/dist
-RUN npm run build
+RUN tsc -p
 CMD ["node", "./path/to/index.js"]
