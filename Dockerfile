@@ -3,7 +3,7 @@ ADD https://github.com/victorlledur/SKpedia ./
 COPY ./ /app
 WORKDIR /app
 RUN npm install
-RUN npm install tsc -g
+RUN npm install typescript -g
 RUN mkdir /app/dist
-RUN tsc -p
+RUN tsc
 CMD ["node", "./dist/index.js"]
