@@ -6,4 +6,4 @@ RUN npm install
 RUN npm install tsc -g
 RUN mkdir /app/dist
 RUN tsc -p
-CMD ["node", "./path/to/index.js"]
+CMD ["node", "./dist/index.js"]
