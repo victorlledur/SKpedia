@@ -10,6 +10,10 @@ const assassinoController = {
             const { nome, apelido, genero, nacionalidade, data_de_nascimento, categorias, vitimas_confirmadas, vitimas_atribuidas, anos_de_atividade, paises_de_atividade, passado_e_infancia, assassinatos, julgamento, data_da_prisao,
                 sentenca, local_da_prisao, executado, data_da_morte, imagens_do_assassino, imagens_das_vitimas, midia_em_portugues } = req.body;
 
+            const passadoEInfanciaLimpo = passado_e_infancia.replace(/\\/g, '');
+            const assassinatosLimpo = assassinatos.replace(/\\/g, '');
+            const julgamentoLimpo = julgamento.replace(/\\/g, '');
+
             const newAssassino = await prisma.assassino.create({
                 data: {
                     nome: nome,
@@ -24,9 +28,9 @@ const assassinoController = {
                     vitimas_atribuidas: vitimas_atribuidas,
                     anos_de_atividade: anos_de_atividade,
                     paises_de_atividade: paises_de_atividade,
-                    passado_e_infancia: passado_e_infancia,
-                    assassinatos: assassinatos,
-                    julgamento: julgamento,
+                    passado_e_infancia: passadoEInfanciaLimpo,
+                    assassinatos: assassinatosLimpo,
+                    julgamento: julgamentoLimpo,
                     data_da_prisao: data_da_prisao,
                     sentenca: sentenca,
                     local_da_prisao: local_da_prisao,
@@ -209,25 +213,25 @@ const assassinoController = {
     },
 
     async assassinosPorCategoria(req: Request, res: Response, next: NextFunction) {
-    const categoria = req.params.categoria;
-    try {
-        const assassinos = await prisma.assassino.findMany({
-            where: {
-                categorias: {
-                    some: {
-                        categoria: categoria
+        const categoria = req.params.categoria;
+        try {
+            const assassinos = await prisma.assassino.findMany({
+                where: {
+                    categorias: {
+                        some: {
+                            categoria: categoria
+                        }
                     }
+                },
+                include: {
+                    categorias: true
                 }
-            },
-            include: {
-                categorias: true
-            }
-        });
-        res.json(assassinos);
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao buscar assassinos por categoria' });
-    }
-},
+            });
+            res.json(assassinos);
+        } catch (error) {
+            res.status(500).json({ error: 'Erro ao buscar assassinos por categoria' });
+        }
+    },
 
     async assassinosAleatorios(req: Request, res: Response, next: NextFunction) {
         try {
